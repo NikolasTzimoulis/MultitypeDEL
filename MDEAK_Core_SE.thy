@@ -12,7 +12,7 @@ type_synonym Funaction = string
 datatype Action =  Action_Fdiam3 Agent Funaction (infix "\<triangle>\<^sub>3" 330)
                  | Action_Bdiam3 Agent Funaction (infix "\<triangleq>\<^sub>3" 330)
 
-datatype Formula = Formula_Atprop Atprop ("_ \<^sub>F" [320] 330)
+datatype Formula = Formula_Atprop Atprop ("_ \<^sub>F" [400] 410)
                  | Formula_Top ("\<top>")
                  | Formula_Bot ("\<bottom>")
                  | Formula_And Formula Formula (infix "\<and>\<^sub>F" 330)
@@ -39,7 +39,7 @@ datatype Formula = Formula_Atprop Atprop ("_ \<^sub>F" [320] 330)
 
 (* Structural level *)
 
-datatype Formula_S = Formula_Atomic_S Formula ("_ \<^sub>S\<^sub>F\<^sub>M" [330] 340)
+datatype Formula_S = Formula_Atomic_S Formula ("_ \<^sub>S\<^sub>F\<^sub>M" [350] 360)
                    | Formula_Neutral_S ("I\<^sub>S")
                    | Formula_Comma_S Formula_S Formula_S (infix ";\<^sub>S" 340)
                    | Formula_Bigcomma_S "Formula_S list" (";;\<^sub>S _" [330] 331)
@@ -60,19 +60,19 @@ datatype Formula_S = Formula_Atomic_S Formula ("_ \<^sub>S\<^sub>F\<^sub>M" [330
                    | Formula_Bdiam2_S Agent_S Formula_S (infix "\<triangleq>\<^sub>2\<^sub>S" 340)
                    | Formula_Bbox2_S Agent_S Formula_S (infix "\<unrhd>\<^sub>2\<^sub>S" 340)
 
-and Funaction_S =    Funaction_Atomic_S Funaction ("_ \<^sub>S\<^sub>F\<^sub>A" [330] 340)
+and Funaction_S =    Funaction_Atomic_S Funaction ("_ \<^sub>S\<^sub>F\<^sub>A" [350] 360)
                    | Funaction_wlas0_S Formula_S Formula_S (infix "\<lhd>~\<^sub>0\<^sub>S" 340)
                    | Funaction_blas0_S Formula_S Formula_S (infix "\<unlhd>~\<^sub>0\<^sub>S" 340)
                    | Function_wras3_S Agent_S Action_S (infix "~\<rhd>\<^sub>3\<^sub>S" 340)
                    | Function_bras3_S Agent_S Action_S (infix "~\<unrhd>\<^sub>3\<^sub>S" 340)
 
-and Action_S =       Action_Atomic_S Action ("_ \<^sub>S\<^sub>A\<^sub>C" [330] 340)
+and Action_S =       Action_Atomic_S Action ("_ \<^sub>S\<^sub>A\<^sub>C" [350] 360)
                    | Action_Bdiam3_S Agent_S Funaction_S (infix "\<triangleq>\<^sub>3\<^sub>S" 340)
                    | Action_Fdiam3_S Agent_S Funaction_S (infix "\<triangle>\<^sub>3\<^sub>S" 340)
                    | Action_wla1_S Formula_S Formula_S (infix "\<lhd>\<^sub>1\<^sub>S" 340)
                    | Action_bla1_S Formula_S Formula_S (infix "\<unlhd>\<^sub>1\<^sub>S" 340)
                                                                      
-and Agent_S =        Agent_Atomic_S Agent ("_ \<^sub>S\<^sub>A\<^sub>G" [330] 340)
+and Agent_S =        Agent_Atomic_S Agent ("_ \<^sub>S\<^sub>A\<^sub>G" [350] 360)
                    | Agent_wlas2_S Formula_S Formula_S (infix "\<lhd>~\<^sub>2\<^sub>S" 340)
                    | Agent_blas2_S Formula_S Formula_S (infix "\<unlhd>~\<^sub>2\<^sub>S" 340)
                    | Agent_wlas3_S Action_S Funaction_S (infix "\<lhd>~\<^sub>3\<^sub>S" 340)
