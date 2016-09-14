@@ -189,17 +189,36 @@ by (simp add: AderivesA Balance DH_bdiam0_b DH_bdiam0_f FS_fbox0 Fbox0_R Fdiam0_
 
 lemma c13: "\<turnstile>d ((a \<triangle>\<^sub>0 \<top>) \<and>\<^sub>F (ag \<triangle>\<^sub>2 ((ag \<triangleq>\<^sub>3 a) \<triangle>\<^sub>1 A)))\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M (a \<triangle>\<^sub>0 (ag \<triangle>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M "
 proof - 
-  have "\<turnstile>d ((ag \<triangleq>\<^sub>3 a) \<triangle>\<^sub>1 A)\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M (ag)\<^sub>S\<^sub>A\<^sub>G \<unrhd>\<^sub>2\<^sub>S (((a)\<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S I\<^sub>S) \<rightarrow>\<^sub>S (a \<triangle>\<^sub>0 (ag \<triangle>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M)"
-sledgehammer[timeout=600]
+  have "\<turnstile>d (A)\<^sub>S\<^sub>F\<^sub>M  \<turnstile>\<^sub>F\<^sub>M (ag)\<^sub>S\<^sub>A\<^sub>G \<unrhd>\<^sub>2\<^sub>S ((a)\<^sub>S\<^sub>F\<^sub>A \<unrhd>\<^sub>0\<^sub>S (a \<triangle>\<^sub>0 ( ag \<triangle>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M)"
+    by (simp add: AderivesA DH_fdiam0_f DH_fdiam2_f Fdiam0_R Fdiam2_R Id_ag Id_fa)
+  then have "\<turnstile>d ((ag \<triangleq>\<^sub>3 a) \<triangle>\<^sub>1 A)\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M (ag)\<^sub>S\<^sub>A\<^sub>G \<unrhd>\<^sub>2\<^sub>S (((a)\<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S I\<^sub>S) \<rightarrow>\<^sub>S (a \<triangle>\<^sub>0 (ag \<triangle>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M)"
+    using Bdiam3_L DH_bla1_b DH_bla1_f DH_fdiam1_b Fdiam1_L Swapin_R by blast
   then show ?thesis
+    by (meson And_L DH_fdiam0_b DH_fdiam0_f DH_fdiam2_b D_IL1_b D_IL1_f D_IR1_b Fdiam0_L Fdiam2_L IW_L)
 qed
 
 lemma c14: "\<turnstile>d (a \<rhd>\<^sub>0 (ag \<rhd>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M ((a \<triangle>\<^sub>0 \<top>) \<rightarrow>\<^sub>F (ag \<rhd>\<^sub>2 ((ag \<triangleq>\<^sub>3  a) \<rhd>\<^sub>1 A )))\<^sub>S\<^sub>F\<^sub>M"
-sledgehammer[timeout=600]
-sorry
+proof - 
+  have "\<turnstile>d ((ag)\<^sub>S\<^sub>A\<^sub>G \<triangleq>\<^sub>3\<^sub>S (a)\<^sub>S\<^sub>F\<^sub>A) \<triangleq>\<^sub>1\<^sub>S ((ag)\<^sub>S\<^sub>A\<^sub>G \<triangleq>\<^sub>2\<^sub>S (((a)\<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S I\<^sub>S) ;\<^sub>S (a \<rhd>\<^sub>0 (ag \<rhd>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M)) \<turnstile>\<^sub>F\<^sub>M (A)\<^sub>S\<^sub>F\<^sub>M"
+    by (simp add: AderivesA DH_bdiam0_b DH_bdiam2_b Fbox0_L Fbox2_L Id_ag Id_fa Swapin_L)
+  then show ?thesis
+    by (meson Bdiam3_L DH_bdiam1_f DH_bdiam2_f DH_fdiam0_b DH_fdiam0_f DH_wla1_b DH_wla1_f D_IL1_b D_IL1_f D_IR1_f Fbox1_R Fbox2_R Fdiam0_L IW_L ImpR_R)
+qed
 
 lemma c15: "\<turnstile>d (a \<triangle>\<^sub>0 (ag \<rhd>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M ((a \<triangle>\<^sub>0 \<top>) \<and>\<^sub>F (ag \<rhd>\<^sub>2 ((ag \<triangleq>\<^sub>3 a) \<rhd>\<^sub>1 A )))\<^sub>S\<^sub>F\<^sub>M"
-sorry
+proof -
+  have "\<turnstile>d (ag)\<^sub>S\<^sub>A\<^sub>G \<triangleq>\<^sub>2\<^sub>S ((a)\<^sub>S\<^sub>F\<^sub>A \<triangleq>\<^sub>0\<^sub>S ((a)\<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S (ag \<rhd>\<^sub>2 A)\<^sub>S\<^sub>F\<^sub>M)) \<turnstile>\<^sub>F\<^sub>M (A)\<^sub>S\<^sub>F\<^sub>M"
+    by (simp add: AderivesA Balance DH_bdiam0_b DH_bdiam2_b Fbox2_L Id_ag)
+  then have "\<turnstile>d (ag \<triangleq>\<^sub>3 a)\<^sub>S\<^sub>A\<^sub>C \<triangleq>\<^sub>1\<^sub>S ((ag)\<^sub>S\<^sub>A\<^sub>G \<triangleq>\<^sub>2\<^sub>S (((a)\<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S I\<^sub>S) ;\<^sub>S ((a)\<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S (ag \<rhd>\<^sub>2 A)\<^sub>S\<^sub>F\<^sub>M))) \<turnstile>\<^sub>F\<^sub>M (A)\<^sub>S\<^sub>F\<^sub>M"
+    using Bdiam3_L DH_wla1_b DH_wla1_f Swapin_L \<open>\<turnstile>d ag \<^sub>S\<^sub>A\<^sub>G \<triangleq>\<^sub>2\<^sub>S (a \<^sub>S\<^sub>F\<^sub>A \<triangleq>\<^sub>0\<^sub>S (a \<^sub>S\<^sub>F\<^sub>A \<triangle>\<^sub>0\<^sub>S (ag \<rhd>\<^sub>2 A) \<^sub>S\<^sub>F\<^sub>M)) \<turnstile>\<^sub>F\<^sub>M A \<^sub>S\<^sub>F\<^sub>M\<close> by blast
+  then show ?thesis
+    by (metis And_R DH_bdiam1_f DH_bdiam2_f DH_fdiam0_b DH_fdiam0_f D_IL1_f Fbox1_R Fbox2_R Fdiam0_L Fdiam0_R I_1L_b Id_fa Mon_fdiam0 Top_R)
+qed
 
 lemma c16: "\<turnstile>d ((a \<triangle>\<^sub>0 \<top>) \<and>\<^sub>F (ag \<rhd>\<^sub>2 ((ag \<triangleq>\<^sub>3 a) \<rhd>\<^sub>1 A)))\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M (a \<triangle>\<^sub>0 (ag \<rhd>\<^sub>2 A))\<^sub>S\<^sub>F\<^sub>M"
-sorry
+proof -
+  have "\<turnstile>d (a)\<^sub>S\<^sub>F\<^sub>A \<triangleq>\<^sub>0\<^sub>S (ag \<rhd>\<^sub>2 ((ag \<triangleq>\<^sub>3 a) \<rhd>\<^sub>1 A ))\<^sub>S\<^sub>F\<^sub>M \<turnstile>\<^sub>F\<^sub>M (ag \<rhd>\<^sub>2 A)\<^sub>S\<^sub>F\<^sub>M"
+    by (meson AderivesA Bdiam3_R DH_bdiam1_b DH_bdiam2_b DH_bdiam2_f Fbox1_L Fbox2_L Fbox2_R Id_ag Id_fa Swapout_L)
+  then show ?thesis
+    by (simp add: And_L DH_fdiam0_b DH_fdiam0_f D_IR1_b E_L FS_bbox0 Fdiam0_L Fdiam0_R Id_fa W_2L)
+qed
